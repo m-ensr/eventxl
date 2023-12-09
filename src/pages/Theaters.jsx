@@ -31,9 +31,9 @@ function Theatres() {
       ) : (
         theatreData && theatreData.length > 0 && (
           <div>
-            <h1>Title: {theatreData[0].title}</h1>
+            <h1>name: {theatreData[0].name}</h1>
             <p>Detail: {theatreData[0].detail}</p>
-            <img src={theatreData[0].imgURL1} alt={theatreData[0].title} />
+            <img src={theatreData[0].imgURL1} alt={theatreData[0].name} />
           </div>
         )
       )}

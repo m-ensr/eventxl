@@ -32,9 +32,9 @@ function Concerts() {
       ) : (
         concertData && concertData.length > 0 ? (
           <div>
-            <h1>Title: {concertData[0].title}</h1>
+            <h1>name: {concertData[0].name}</h1>
             <p>Detail: {concertData[0].detail}</p>
-            <img src={concertData[0].imgURL1} alt={concertData[0].title} />
+            <img src={concertData[0].imgURL1} alt={concertData[0].name} />
           </div>
         ) : (
           <p>No concert data available.</p>
