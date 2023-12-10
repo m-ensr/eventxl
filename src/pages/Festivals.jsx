@@ -77,22 +77,15 @@ function Festivals() {
           <p>{festivalData[4].sDate}</p>
           <p>{festivalData[4].place}</p>
           </div>
-<<<<<<< Updated upstream
-        </div> 
-=======
-        </div>
-
-      
-        
->>>>>>> Stashed changes
-        </div>
-      ) 
-      : (
-        <p>No concert data available.</p>
-      )
-    )}
-  </div>
-  )
+          </div>
+          </div>
+        ) 
+        : (
+          <p>No concert data available.</p>
+        )
+      )}
+    </div>
+  );
 }
 
 export default Festivals
