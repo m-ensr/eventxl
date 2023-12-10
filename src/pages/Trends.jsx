@@ -36,9 +36,6 @@ function Trends() {
                 <img className='fill' src={event.imgURL1} alt={event.name} />
                 <div className="container">
                   <h1>{event.name}</h1>
-                  <p>{event.address}</p>
-                  <p>{event.sDate}</p>
-                  <p>{event.place}</p>
                 </div>
               </div>
             ))}
