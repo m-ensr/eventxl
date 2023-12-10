@@ -1,129 +1,49 @@
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+import { Card, CardContent } from "@mui/material";
+import "./Style.css";
 
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
-import './Style.css'
+const EventList = ({ events }) => {
+  const filteredEvents = events.filter(
+    (event) => event.category.toLowerCase() === "music"
+  );
 
-function Concerts() {
-  const [concertData, setConcertData] = useState(null);
-  const [error, setError] = useState(null);
+  return (
+    <div className="card-container">
+      {filteredEvents.map((event) => (
+        <a href={`#event-${event.id}`} key={event.id} className="event-card">
+          <Card>
+            <img
+              src={event.imgURL1}
+              alt={event.name}
+              className="event-card-image"
+            />
+            <CardContent className="event-card-content">
+              <h3 className="event-title">{event.name}</h3>
+              <p className="event-address">{event.address}</p>
+            </CardContent>
+          </Card>
+        </a>
+      ))}
+    </div>
+  );
+};
+
+const Concerts = () => {
+  const [events, setEvents] = useState([]);
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axios.get('http://localhost:3003/events'); 
-        if (!response.data) {
-          throw new Error('No data received');
-        }
-        const concertEventData = response.data.filter(event => event.category === 'music');
-        
-        setConcertData(concertEventData);
-      } catch (error) {
-        console.error('Error fetching concert data:', error.message);
-        setError('An error occurred while fetching concert data.');
-      }
-    };
-
-    fetchData();
+    axios
+      .get("http://localhost:3003/events")
+      .then((response) => setEvents(response.data))
+      .catch((error) => console.error("Error fetching data:", error));
   }, []);
 
   return (
-    <div>
-      {error ? (
-        <p>{error}</p>
-      ) : (
-        concertData && concertData.length > 0 ? (
-          <div className="page">
-
-          <div className='card'>
-            <img className='fill' src={concertData[0].imgURL1} alt={concertData[0].name} />
-            <div className="container">
-            <h1>{concertData[0].name}</h1>
-            <p>{concertData[0].address}</p>
-            <p>{concertData[0].sDate}</p>
-            <p>{concertData[0].place}</p>
-            </div>
-          </div>
-
-          <div className='card'>
-            <img className='fill' src={concertData[1].imgURL1} alt={concertData[1].name} />
-            <div className="container">
-            <h1>{concertData[1].name}</h1>
-            <p>{concertData[1].address}</p>
-            <p>{concertData[1].sDate}</p>
-            <p>{concertData[1].place}</p>
-            </div>
-          </div>
-
-          <div className='card'>
-            <img className='fill' src={concertData[2].imgURL1} alt={concertData[2].name} />
-            <div className="container">
-            <h1>{concertData[2].name}</h1>
-            <p>{concertData[2].address}</p>
-            <p>{concertData[2].sDate}</p>
-            <p>{concertData[2].place}</p>
-            </div>
-          </div>
-
-          <div className='card'>
-            <img className='fill' src={concertData[3].imgURL1} alt={concertData[3].name} />
-            <div className="container">
-            <h1>{concertData[3].name}</h1>
-            <p>{concertData[3].address}</p>
-            <p>{concertData[3].sDate}</p>
-            <p>{concertData[3].place}</p>
-            </div>
-          </div>
-
-          <div className='card'>
-            <img className='fill' src={concertData[4].imgURL1} alt={concertData[4].name} />
-            <div className="container">
-            <h1>{concertData[4].name}</h1>
-            <p>{concertData[4].address}</p>
-            <p>{concertData[4].sDate}</p>
-            <p>{concertData[4].place}</p>
-            </div>
-          </div>
-
-          <div className='card'>
-            <img className='fill' src={concertData[5].imgURL1} alt={concertData[5].name} />
-            <div className="container">
-            <h2>{concertData[5].name}</h2>
-            <p>{concertData[5].address}</p>
-            <p>{concertData[5].sDate}</p>
-            <p>{concertData[5].place}</p>
-            </div>
-          </div>
-
-          <div className='card'>
-            <img className='fill' src={concertData[6].imgURL1} alt={concertData[6].name} />
-            <div className="container">
-            <h2>{concertData[6].name}</h2>
-            <p>{concertData[6].address}</p>
-            <p>{concertData[6].sDate}</p>
-            <p>{concertData[6].place}</p>
-            </div>
-          </div>
-
-          <div className='card'>
-            <img className='fill' src={concertData[7].imgURL1} alt={concertData[7].name} />
-            <div className="container">
-            <h1>{concertData[7].name}</h1>
-            <p>{concertData[7].address}</p>
-            <p>{concertData[7].sDate}</p>
-            <p>{concertData[7].place}</p>
-            </div>
-          </div>
-          
-          
-          
-          </div>
-        ) 
-        : (
-          <p>No concert data available.</p>
-        )
-      )}
+    <div className="page-container">
+      <EventList events={events} />
     </div>
   );
-}
+};
 
 export default Concerts;

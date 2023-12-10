@@ -1,91 +1,49 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
-import './Style.css'
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+import { Card, CardContent } from "@mui/material";
+import "./Style.css";
 
-function Festivals() {
-  const [festivalData, setFestivalData] = useState(null);
-  const [error, setError] = useState(null);
+const EventList = ({ events }) => {
+  const filteredEvents = events.filter(
+    (event) => event.category.toLowerCase() === "festival"
+  );
+
+  return (
+    <div className="card-container">
+      {filteredEvents.map((event) => (
+        <a href={`#event-${event.id}`} key={event.id} className="event-card">
+          <Card>
+            <img
+              src={event.imgURL1}
+              alt={event.name}
+              className="event-card-image"
+            />
+            <CardContent className="event-card-content">
+              <h3 className="event-title">{event.name}</h3>
+              <p className="event-address">{event.address}</p>
+            </CardContent>
+          </Card>
+        </a>
+      ))}
+    </div>
+  );
+};
+
+const Festivals = () => {
+  const [events, setEvents] = useState([]);
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axios.get('http://localhost:3003/events'); 
-        if (!response.data) {
-          throw new Error('No data received');
-        }
-        const festivalEventData = response.data.filter(event => event.category === 'festival');
-        
-        setFestivalData(festivalEventData);
-      } catch (error) {
-        console.error('Error fetching concert data:', error.message);
-        setError('An error occurred while fetching festival data.');
-      }
-    };
-
-    fetchData();
+    axios
+      .get("http://localhost:3003/events")
+      .then((response) => setEvents(response.data))
+      .catch((error) => console.error("Error fetching data:", error));
   }, []);
 
   return (
-    <div>
-    {error ? (
-      <p>{error}</p>
-    ) : (
-      festivalData && festivalData.length > 0 ? (
-        <div className="page">
-
-        <div className='card'>
-          <img className='fill' src={festivalData[0].imgURL1} alt={festivalData[0].name} />
-          <div className="container">
-          <h2>{festivalData[0].name}</h2>
-          <p>{festivalData[0].address}</p>
-          <p>{festivalData[0].sDate}</p>
-          <p>{festivalData[0].place}</p>
-          </div>
-        </div>
-        <div className='card'>
-          <img className='fill' src={festivalData[1].imgURL1} alt={festivalData[1].name} />
-          <div className="container">
-          <h1>{festivalData[1].name}</h1>
-          <p>{festivalData[1].address}</p>
-          <p>{festivalData[1].sDate}</p>
-          <p>{festivalData[1].place}</p>
-          </div>
-        </div>
-        <div className='card'>
-          <img className='fill' src={festivalData[2].imgURL1} alt={festivalData[2].name} />
-          <div className="container">
-          <h3>{festivalData[2].name}</h3>
-          <p>{festivalData[2].address}</p>
-          <p>{festivalData[2].sDate}</p>
-          <p>{festivalData[2].place}</p>
-          </div>
-        </div>
-        <div className='card'>
-          <img className='fill' src={festivalData[3].imgURL1} alt={festivalData[3].name} />
-          <div className="container">
-          <h3>{festivalData[3].name}</h3>
-          <p>{festivalData[3].address}</p>
-          <p>{festivalData[3].sDate}</p>
-          <p>{festivalData[3].place}</p>
-          </div>
-        </div>
-        <div className='card'>
-          <img className='fill' src={festivalData[4].imgURL1} alt={festivalData[4].name} />
-          <div className="container">
-          <h2>{festivalData[4].name}</h2>
-          <p>{festivalData[4].address}</p>
-          <p>{festivalData[4].sDate}</p>
-          <p>{festivalData[4].place}</p>
-          </div>
-          </div>
-          </div>
-        ) 
-        : (
-          <p>No concert data available.</p>
-        )
-      )}
+    <div className="page-container">
+      <EventList events={events} />
     </div>
   );
-}
+};
 
-export default Festivals
+export default Festivals;

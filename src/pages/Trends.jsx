@@ -1,52 +1,49 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
-import './Style.css';
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+import { Card, CardContent } from "@mui/material";
+import "./Style.css";
 
-function Trends() {
-  const [trendsData, setTrendsData] = useState(null);
-  const [error, setError] = useState(null);
+const EventList = ({ events }) => {
+  const filteredEvents = events.filter(
+    (event) => Number(event.popularity) === 1
+  );
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axios.get('http://localhost:3003/events');
-        if (!response.data) {
-          throw new Error('No data received');
-        }
-        const trendsEventData = response.data.filter(event => event.popularity === "1");
-        
-        setTrendsData(trendsEventData);
-      } catch (error) {
-        console.error('Error fetching trends data:', error.message);
-        setError('An error occurred while fetching trends data.');
-      }
-    };
-
-    fetchData();
-  }, []);
   return (
-    <div>
-      {error ? (
-        <p>{error}</p>
-      ) : (
-        trendsData && trendsData.length > 0 ? (
-          <div className="page">
-            {trendsData.map((event, index) => (
-              <div className='card' key={index}>
-                <img className='fill' src={event.imgURL1} alt={event.name} />
-                <div className="container">
-                  <h1>{event.name}</h1>
-                </div>
-              </div>
-            ))}
-          </div>
-        ) 
-        : (
-          <p>No trends data available.</p>
-        )
-      )}
+    <div className="card-container">
+      {filteredEvents.map((event) => (
+        <a href={`#event-${event.id}`} key={event.id} className="event-card">
+          <Card>
+            <img
+              src={event.imgURL1}
+              alt={event.name}
+              className="event-card-image"
+            />
+            <CardContent className="event-card-content">
+              <h3 className="event-title">{event.name}</h3>
+              <p className="event-address">{event.address}</p>
+            </CardContent>
+          </Card>
+        </a>
+      ))}
     </div>
   );
-}
+};
+
+const Trends = () => {
+  const [events, setEvents] = useState([]);
+
+  useEffect(() => {
+    axios
+      .get("http://localhost:3003/events")
+      .then((response) => setEvents(response.data))
+      .catch((error) => console.error("Error fetching data:", error));
+  }, []);
+
+  return (
+    <div className="page-container">
+      <EventList events={events} />
+    </div>
+  );
+};
 
 export default Trends;
