@@ -18,7 +18,6 @@ export default function SimpleBottomNavigation() {
         width: "100%",
         position: "fixed",
         bottom: 0,
-        backgroundColor: "#0E2F2C",
         zIndex: 100,
       }}
     >
@@ -30,31 +29,31 @@ export default function SimpleBottomNavigation() {
         }}
       >
         <BottomNavigationAction
-          label="Trends"
+          label="Popüler"
           icon={<WhatshotIcon />}
           component={Link}
           to="/Trends"
         />
         <BottomNavigationAction
-          label="Festivals"
+          label="Festival"
           icon={<FestivalIcon />}
           component={Link}
           to="/festivals"
         />
         <BottomNavigationAction
-          label="Theaters"
+          label="Tiyatro"
           icon={<TheaterComedyIcon />}
           component={Link}
           to="/theaters"
         />
         <BottomNavigationAction
-          label="Movies"
+          label="Sinema"
           icon={<MovieIcon />}
           component={Link}
           to="/movies"
         />
         <BottomNavigationAction
-          label="Concerts"
+          label="Müzik"
           icon={<MusicNoteIcon />}
           component={Link}
           to="/concerts"
