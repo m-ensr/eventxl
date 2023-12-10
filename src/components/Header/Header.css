@@ -1,28 +1,24 @@
 .header {
-    width: 100%;
-    cursor: pointer;
-    position: fixed;
-    display: flex;
-    justify-content: center;
-    text-transform: uppercase;
-    background-color: #113B37;
-    font-family: "Afacad";
-    font-size: 5vw;
-    padding-bottom: 15px;
-    box-shadow: 0px 1px 5px black;
-    color: white;
-    z-index: 100;
-    color: #B8CFBA;
-    text-decoration-line: none;
-    color: 'inherit'
-  }
+  width: 100%;
+  cursor: pointer;
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  text-transform: uppercase;
+  background-color: #49108b;
+  font-family: "Afacad";
+  font-size: 5vw;
+  padding-bottom: 15px;
+  box-shadow: 0px 1px 5px black;
+  z-index: 100;
+  color: #f3f8ff;
+  text-decoration-line: none;
+  color: "inherit";
+}
 
-   
- 
-
-  @media (max-width: 1000px) {
-    .header {
-      padding-top: 15px;
-      font-size: 6.4vw;
-    }
+@media (max-width: 1000px) {
+  .header {
+    padding-top: 15px;
+    font-size: 6.4vw;
   }
+}
