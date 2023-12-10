@@ -36,7 +36,7 @@ function Festivals() {
         <div className='card'>
           <img className='fill' src={festivalData[0].imgURL1} alt={festivalData[0].name} />
           <div className="container">
-          <h1>{festivalData[0].name}</h1>
+          <h2>{festivalData[0].name}</h2>
           <p>{festivalData[0].address}</p>
           <p>{festivalData[0].sDate}</p>
           <p>{festivalData[0].place}</p>
@@ -54,7 +54,7 @@ function Festivals() {
         <div className='card'>
           <img className='fill' src={festivalData[2].imgURL1} alt={festivalData[2].name} />
           <div className="container">
-          <h1>{festivalData[2].name}</h1>
+          <h3>{festivalData[2].name}</h3>
           <p>{festivalData[2].address}</p>
           <p>{festivalData[2].sDate}</p>
           <p>{festivalData[2].place}</p>
@@ -63,7 +63,7 @@ function Festivals() {
         <div className='card'>
           <img className='fill' src={festivalData[3].imgURL1} alt={festivalData[3].name} />
           <div className="container">
-          <h1>{festivalData[3].name}</h1>
+          <h3>{festivalData[3].name}</h3>
           <p>{festivalData[3].address}</p>
           <p>{festivalData[3].sDate}</p>
           <p>{festivalData[3].place}</p>
@@ -72,12 +72,19 @@ function Festivals() {
         <div className='card'>
           <img className='fill' src={festivalData[4].imgURL1} alt={festivalData[4].name} />
           <div className="container">
-          <h1>{festivalData[4].name}</h1>
+          <h2>{festivalData[4].name}</h2>
           <p>{festivalData[4].address}</p>
           <p>{festivalData[4].sDate}</p>
           <p>{festivalData[4].place}</p>
           </div>
+<<<<<<< Updated upstream
         </div> 
+=======
+        </div>
+
+      
+        
+>>>>>>> Stashed changes
         </div>
       ) 
       : (
