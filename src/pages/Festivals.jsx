@@ -77,19 +77,7 @@ function Festivals() {
           <p>{festivalData[4].sDate}</p>
           <p>{festivalData[4].place}</p>
           </div>
-        </div>
-        <div className='card'>
-          <img className='fill' src={festivalData[5].imgURL1} alt={festivalData[5].name} />
-          <div className="container">
-          <h1>{festivalData[5].name}</h1>
-          <p>{festivalData[5].address}</p>
-          <p>{festivalData[5].sDate}</p>
-          <p>{festivalData[5].place}</p>
-          </div>
-        </div>
-
-      
-        
+        </div> 
         </div>
       ) 
       : (
