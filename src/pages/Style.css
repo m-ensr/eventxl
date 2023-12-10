@@ -1,37 +1,64 @@
-.page{
-    display: grid;
-    grid-template-columns: auto auto auto auto;
-    justify-content: space-evenly;
-    align-items: center;
+.page-container {
+  display: flex;
+  font-family: "Roboto";
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
 }
 
+.search-form {
+  display: flex;
+  margin-bottom: 20px;
+  width: 500;
+}
 
-.card {
-  font-family: 'Roboto';
-    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-    transition: 0.3s;
-    width: 250px;
-    background-color: #d1d1d1;
-    height: 400px;
-    object-fit: fill;
-    margin-bottom: 20px;
-    overflow: hidden;
-  }
-  
-  .card:hover {
-    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
-  }
-  
-  .container {
-    padding: 2px 16px;
-  }
+.text {
+  margin-right: 10px;
+}
 
-  img{
-    width: 250px;
-    height: 200px;
-  }
+.card-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
 
-  .fill{
-    object-fit: fill;
+.event-card {
+  cursor: pointer;
+  margin: 15px;
+  transition: transform 0.3s ease-in-out;
+  display: flex;
+  flex-direction: column;
+  width: 320px;
+  height: 550px;
+  overflow: hidden;
+  text-decoration: none;
+  &:hover {
+    transform: scale(1.05);
   }
-  
+}
+
+.event-card img {
+  width: 100%;
+  height: 400px; /* Set a fixed height for the images */
+  object-fit: cover;
+}
+
+.event-card-content {
+  text-align: center;
+  padding: 10px;
+  box-sizing: border-box;
+  height: 300px; /* Set a fixed height for the CardContent container */
+}
+
+.event-title {
+  margin-bottom: 5px;
+  font-size: 1.2em;
+  font-family: "Roboto";
+  color: #5b0888;
+}
+
+.event-details {
+  font-family: "Roboto";
+  font-size: 1em;
+  color: #5b0888;
+}
