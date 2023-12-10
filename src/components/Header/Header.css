@@ -13,8 +13,12 @@
     color: white;
     z-index: 100;
     color: #B8CFBA;
-    
+    text-decoration-line: none;
+    color: 'inherit'
   }
+
+   
+ 
 
   @media (max-width: 1000px) {
     .header {
