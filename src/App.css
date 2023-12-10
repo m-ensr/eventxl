@@ -1,17 +1,17 @@
 .app {
-    min-height: 100vh;
-    background-color: #4F7383;
-    color: black;
-    padding-top: 130px;
-    padding-bottom: 70px;
-  }
-  
-  @media (max-width: 700px) {
-    .app {
-      padding-top: 70px;
-    }
-  }
+  min-height: 100vh;
+  background-color: #713abe;
+  padding-top: 130px;
+  padding-bottom: 70px;
+}
 
-  html, body{
-    margin: 0;
+@media (max-width: 700px) {
+  .app {
+    padding-top: 70px;
   }
+}
+
+html,
+body {
+  margin: 0;
+}
